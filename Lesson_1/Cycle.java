@@ -17,13 +17,13 @@ public class Cycle {
         //Odd numbers sum in a range [10, 20]
         current = 10;
         last = 20;
-        int sum = 0;
+        int sumOdd = 0;
         do {
-            if (currentNumber % 2 == 1) {
-                sum += currentNumber;
+            if (current % 2 == 1) {
+                sumOdd += current;
             }
-            currentNumber++;
-        } while (currentNumber <= lastNumber);
-        System.out.println("Sum of odd numbers: " + sum);
+            current++;
+        } while (current <= last);
+        System.out.println("Sum of odd numbers: " + sumOdd);
     }
 }
