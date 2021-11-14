@@ -15,14 +15,14 @@ public class Cycle {
         }
 
         //Odd numbers sum in a range [10, 20]
-        int currentNumber = 10;
-        int lastNumber = 20;
+        current = 10;
+        last = 20;
         int sum = 0;
         do {
             if (currentNumber % 2 == 1) {
                 sum += currentNumber;
             }
-            currentNumber += 1;
+            currentNumber++;
         } while (currentNumber <= lastNumber);
         System.out.println("Sum of odd numbers: " + sum);
     }
