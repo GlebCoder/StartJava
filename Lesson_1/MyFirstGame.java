@@ -11,8 +11,7 @@ public class MyFirstGame {
             if (guessNumber < randomNumber) {
                 System.out.println("Your number is too small");
                 min = guessNumber;
-            }
-            if (guessNumber > randomNumber) {
+            } else if (guessNumber > randomNumber) {
                 System.out.println("Your number is too big");
                 max = guessNumber;
             }
