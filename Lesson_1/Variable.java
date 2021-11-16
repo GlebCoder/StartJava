@@ -8,7 +8,6 @@ public class Variable {
         double maxFrequency = 4200.00;
         char justLetter = 'G';
         boolean hasComputer = true;
-        
         System.out.println(cpuNumbers);
         System.out.println(modelNumber);
         System.out.println(memory);
