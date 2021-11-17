@@ -8,10 +8,10 @@ public class WolfTest {
         wolf.sex = 'M';
         
         System.out.println("Wolf's name: " + wolf.name 
-                            + "\nColor: " + wolf.color
-                            + "\nAge: " + wolf.age
-                            + "\nWeight: " + wolf.weight
-                            + "\nSex: " + wolf.sex);
+                + "\nColor: " + wolf.color
+                + "\nAge: " + wolf.age
+                + "\nWeight: " + wolf.weight
+                + "\nSex: " + wolf.sex);
         
         wolf.run();
         wolf.howl();
