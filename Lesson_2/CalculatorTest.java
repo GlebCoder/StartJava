@@ -4,16 +4,28 @@ public class CalculatorTest {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String answer;
-        do{
-            System.out.println("Enter the first number:");
-            int firstNumber = scanner.nextInt();
+        int firstNumber;
+        int secondNumber;
+        String operation;
+        do {
+            do {
+                System.out.println("Enter the first number:");
+                firstNumber = scanner.nextInt();
+            } while(firstNumber <= 0);
 
-            System.out.println("Enter a math operation sign:");
-            scanner.nextLine();
-            String operation = scanner.nextLine();
-
-            System.out.println("Enter the second number:");
-            int secondNumber = scanner.nextInt();
+            do {
+                System.out.println("Enter a math operation sign:");
+                operation = scanner.next();
+            } while(!(operation.equals("+") 
+                    || operation.equals("-")
+                    || operation.equals("/")
+                    || operation.equals("*")
+                    || operation.equals("%")
+                    || operation.equals("^")));
+            do {
+                System.out.println("Enter the second number:");
+                secondNumber = scanner.nextInt();
+            } while(secondNumber <= 0);
 
             Calculator calculator = new Calculator(firstNumber, operation, secondNumber);
             System.out.println("The result is " + calculator.calculate());

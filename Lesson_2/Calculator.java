@@ -1,7 +1,7 @@
 public class Calculator {
-    int firstNumber;
-    String operation;
-    int secondNumber;
+    private int firstNumber;
+    private String operation;
+    private int secondNumber;
 
     public Calculator(int firstNumber, String operation, int secondNumber) {
         this.firstNumber = firstNumber;
@@ -11,34 +11,25 @@ public class Calculator {
 
     public int calculate() {
         int result = 0;
-        if(firstNumber > 0 && secondNumber > 0) {
-            switch(operation) {
-                case "+" :
-                    result = firstNumber + secondNumber;
-                    break;
-                case "-" :
-                    result = firstNumber - secondNumber;
-                    break;
-                case "/" :
-                    result = firstNumber / secondNumber;
-                    break;
-                case "%" :
-                    result = firstNumber % secondNumber;
-                    break;
-                case "*" :
-                    result = firstNumber * secondNumber;
-                    break;
-                case "^" :
-                    result = power(firstNumber, secondNumber);
-                    break;
-                default:
-                    result = -1;
-                    System.out.println("Illegal operation. Operation sign can be '+', '-', '/', '*', '%' or '^'");
-            }
-        } else {
-            result = -1;
-            System.out.println("Illegal numbers. Numbers have to be positive integers.");
-
+        switch(operation) {
+            case "+" :
+                result = firstNumber + secondNumber;
+                break;
+            case "-" :
+                result = firstNumber - secondNumber;
+                break;
+            case "/" :
+                result = firstNumber / secondNumber;
+                break;
+            case "%" :
+                result = firstNumber % secondNumber;
+                break;
+            case "*" :
+                result = firstNumber * secondNumber;
+                break;
+            case "^" :
+                result = power(firstNumber, secondNumber);
+                break;
         }
         return result;
     }
