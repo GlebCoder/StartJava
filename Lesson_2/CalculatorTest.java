@@ -22,6 +22,7 @@ public class CalculatorTest {
                     || operation.equals("*")
                     || operation.equals("%")
                     || operation.equals("^")));
+
             do {
                 System.out.println("Enter the second number:");
                 secondNumber = scanner.nextInt();
@@ -30,9 +31,10 @@ public class CalculatorTest {
             Calculator calculator = new Calculator(firstNumber, operation, secondNumber);
             System.out.println("The result is " + calculator.calculate());
 
-            System.out.println("Would you like to continue? 'yes or no':");
-            scanner.nextLine();
-            answer = scanner.nextLine();
+            do {
+                System.out.println("Would you like to continue? [yes/no]:");
+                answer = scanner.next();
+            } while(!(answer.equals("yes") || answer.equals("no")));
         } while(answer.equals("yes"));
     }
 }
