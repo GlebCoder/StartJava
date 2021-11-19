@@ -16,7 +16,7 @@ public class Jaeger {
     }
 
     public Jaeger(String modelName, String mark) {
-        this();
+        this(modelName);
         this.mark = mark;
     }
 

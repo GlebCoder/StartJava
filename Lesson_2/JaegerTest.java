@@ -5,6 +5,8 @@ public class JaegerTest {
         System.out.println("The Jaeger model name: " + jaeger1.getModelName());
         jaeger1.setArmor(8);
         jaeger1.useVortexCannon();
+        Jaeger jaeger3 = new Jaeger("gleb", "mark10");
+        System.out.println(jaeger3.getMark() + " " + jaeger3.getModelName());
         System.out.println("********************************************");
         
         Jaeger jaeger2 = new Jaeger("Gipsy Danger");
