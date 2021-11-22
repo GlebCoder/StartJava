@@ -15,12 +15,11 @@ public class GuessNumberTest {
 
         String answer;
         do {
-            int hiddenNumber = game.getHiddenNumber();
-            game.play(game, hiddenNumber);
+            game.play();
             do {
                 System.out.println("Would you like to play again? [yes/no]");
                 answer = scanner.next();
-            } while (!answer.toLowerCase().equals("yes") && !answer.toLowerCase().equals("no"));
+            } while (!(answer.toLowerCase().equals("yes")) && !(answer.toLowerCase().equals("no")));
         } while (answer.equals("yes"));
     }
 }

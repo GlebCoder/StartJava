@@ -10,19 +10,12 @@ public class GuessNumber {
         this.player2 = player2;
     }
 
-    public Player getPlayer1() {
-        return player1;
-    }
-
-    public Player getPlayer2() {
-        return player2;
-    }
-
-    public static void play(GuessNumber game, int hiddenNumber) {
+    public void play() {
         Scanner scanner = new Scanner(System.in);
-        String player1Name = game.getPlayer1().getName();
-        String player2Name = game.getPlayer2().getName();
+        String player1Name = player1.getName();
+        String player2Name = player2.getName();
         boolean isFound = false;
+        int hiddenNumber = getHiddenNumber();
         do {
             System.out.println(player1Name + ", enter a number");
             int playerGuess = scanner.nextInt();
@@ -39,13 +32,13 @@ public class GuessNumber {
         System.out.println(player2Name + ", you have found the number!!!");
     }
 
-    private static boolean compare(int playerGuess, int computerNumber) {
-        if (playerGuess < computerNumber) {
+    private boolean compare(int playerGuess, int hiddenNumber) {
+        if (playerGuess < hiddenNumber) {
             System.out.println("Your number is too small");
-        } else if (playerGuess > computerNumber) {
+        } else if (playerGuess > hiddenNumber) {
             System.out.println("Your number is too big");
         }
-        return playerGuess == computerNumber;
+        return playerGuess == hiddenNumber;
     }
 
     public int getHiddenNumber() {
