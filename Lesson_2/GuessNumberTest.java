@@ -1,4 +1,3 @@
-import java.util.Random;
 import java.util.Scanner;
 
 public class GuessNumberTest {
@@ -12,24 +11,16 @@ public class GuessNumberTest {
         String player2Name = scanner.next();
         Player player2 = new Player(player2Name);
 
+        GuessNumber game = new GuessNumber(player1, player2);
+
         String answer;
         do {
-            int computerNumber = generateInteger();
-            GuessNumber.play(player1, player2, computerNumber);
+            int hiddenNumber = game.getHiddenNumber();
+            game.play(game, hiddenNumber);
             do {
                 System.out.println("Would you like to play again? [yes/no]");
                 answer = scanner.next();
-            } while (!(answer.toLowerCase().equals("yes")) && !(answer.toLowerCase().equals("no")));
+            } while (!answer.toLowerCase().equals("yes") && !answer.toLowerCase().equals("no"));
         } while (answer.equals("yes"));
-    }
-
-    public static int generateInteger() {
-        Random random = new Random();
-        int number = random.nextInt(101);
-        if (number > 0) {
-            return number;
-        } else {
-            return 1;
-        }
     }
 }
