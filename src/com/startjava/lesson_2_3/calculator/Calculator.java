@@ -1,9 +1,9 @@
 package com.startjava.lesson_2_3.calculator;
 
 public class Calculator {
-    private int firstNumber;
-    private String operation;
-    private int secondNumber;
+    private static int firstNumber;
+    private static String operation;
+    private static int secondNumber;
 
     public Calculator(int firstNumber, String operation, int secondNumber) {
         this.firstNumber = firstNumber;
@@ -11,14 +11,14 @@ public class Calculator {
         this.secondNumber = secondNumber;
     }
 
-    public int calculate() {
+    public static int calculate(int firstNumber, String operation, int secondNumber) {
         int result = 0;
         switch(operation) {
             case "+" :
-                result = firstNumber + secondNumber;
+                result = Math.addExact(firstNumber, secondNumber);
                 break;
             case "-" :
-                result = firstNumber - secondNumber;
+                result = Math.subtractExact(firstNumber, secondNumber);
                 break;
             case "/" :
                 result = firstNumber / secondNumber;
@@ -27,21 +27,21 @@ public class Calculator {
                 result = firstNumber % secondNumber;
                 break;
             case "*" :
-                result = firstNumber * secondNumber;
+                result = Math.multiplyExact(firstNumber, secondNumber);
                 break;
             case "^" :
-                result = power(firstNumber, secondNumber);
+                result = (int) Math.pow(firstNumber, secondNumber);
                 break;
         }
         return result;
     }
 
-    private int power(int firstNumber, int secondNumber) {
-        int result = 1;
-        for(int i = 1; i <= secondNumber; i++) {
-            result *= firstNumber;
-        }
-        return result;
-    }
+//    private int power(int firstNumber, int secondNumber) {
+//        int result = 1;
+//        for(int i = 1; i <= secondNumber; i++) {
+//            result *= firstNumber;
+//        }
+//        return result;
+//    }
 
 }

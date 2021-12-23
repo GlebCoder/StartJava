@@ -10,32 +10,19 @@ public class CalculatorTest {
         int secondNumber;
         String operation;
         do {
-            do {
-                System.out.println("Enter the first number:");
-                firstNumber = scanner.nextInt();
-            } while(firstNumber <= 0);
+            System.out.println("Enter math expression in a format '1 + 2': ");
+            String expression = scanner.nextLine();
+            String[] elements = expression.split(" ");
+            firstNumber = Integer.parseInt(elements[0]);
+            operation = elements[1];
+            secondNumber = Integer.parseInt(elements[2]);
 
-            do {
-                System.out.println("Enter a math operation sign:");
-                operation = scanner.next();
-            } while(!(operation.equals("+") 
-                    || operation.equals("-")
-                    || operation.equals("/")
-                    || operation.equals("*")
-                    || operation.equals("%")
-                    || operation.equals("^")));
-
-            do {
-                System.out.println("Enter the second number:");
-                secondNumber = scanner.nextInt();
-            } while(secondNumber <= 0);
-
-            Calculator calculator = new Calculator(firstNumber, operation, secondNumber);
-            System.out.println("The result is " + calculator.calculate());
+            int result = Calculator.calculate(firstNumber, operation, secondNumber);
+            System.out.println("The result is " + result);
 
             do {
                 System.out.println("Would you like to continue? [yes/no]:");
-                answer = scanner.next();
+                answer = scanner.nextLine();
             } while(!(answer.equals("yes") || answer.equals("no")));
         } while(answer.equals("yes"));
     }
