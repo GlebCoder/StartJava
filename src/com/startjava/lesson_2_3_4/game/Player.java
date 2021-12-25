@@ -4,7 +4,8 @@ import java.util.Arrays;
 
 public class Player {
     private String name;
-    private int[] attempts = new int[10];
+    private int[] attempts = new int[11];
+    private int count = 0;
 
     public Player(String name) {
         this.name = name;
@@ -15,19 +16,25 @@ public class Player {
     }
 
     public int[] getAttempts(int count) {
-        return Arrays.copyOf(attempts, count+1);
+        return Arrays.copyOf(attempts, count);
     }
 
     public void setAttempt(int index, int playerGuess) {
         attempts[index] = playerGuess;
+        count++;
     }
 
-    public void printAttempts(int[] attempts) {
-        System.out.print(name + ", your attempts were: ");
-        System.out.println(Arrays.toString(attempts));
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public void clearAttempts() {
-        Arrays.fill(attempts, 0);
+        Arrays.fill(attempts, 0, count + 1, 0 );
     }
+
+
 }

@@ -1,5 +1,6 @@
 package com.startjava.lesson_2_3_4.game;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -20,9 +21,6 @@ public class GuessNumber {
         int hiddenNumber = getHiddenNumber();
         int count = 0;
 
-        // The "flag" variable is used to show different numbers of attempts if the first player
-        // has found the hidden number.
-        int flag = 0;
         System.out.println("Dear players you have 10 attempts only to find the number!");
         do {
             System.out.println(player1Name + ", enter a number");
@@ -44,17 +42,14 @@ public class GuessNumber {
                     break;
                 }
             } else {
-                flag = 1;
                 System.out.println(player1Name + ", you have found the number with " + (count + 1) + " attempts!!!");
                 break;
             }
             count++;
         } while (!isFound && count < 10);
 
-        int[] player1Attempts = player1.getAttempts(count);
-        player1.printAttempts(player1Attempts);
-        int[] player2Attempts = player2.getAttempts(count - flag);
-        player2.printAttempts(player2Attempts);
+        printAttempts(player1, player1.getCount());
+        printAttempts(player2, player2.getCount());
 
         player1.clearAttempts();
         player2.clearAttempts();
@@ -69,7 +64,7 @@ public class GuessNumber {
         return playerGuess == hiddenNumber;
     }
 
-    public int getHiddenNumber() {
+    private int getHiddenNumber() {
         Random random = new Random();
         int number = random.nextInt(101);
         if (number > 0) {
@@ -77,5 +72,11 @@ public class GuessNumber {
         } else {
             return 1;
         }
+    }
+
+    private void printAttempts(Player player, int count) {
+        int[] attempts = player.getAttempts(count);
+        System.out.print(player.getName() + ", your attempts were: ");
+        System.out.println(Arrays.toString(attempts));
     }
 }
