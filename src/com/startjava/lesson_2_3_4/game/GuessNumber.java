@@ -1,6 +1,5 @@
 package com.startjava.lesson_2_3_4.game;
 
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -14,45 +13,50 @@ public class GuessNumber {
     }
 
     public void play() {
-        Scanner scanner = new Scanner(System.in);
-        String player1Name = player1.getName();
-        String player2Name = player2.getName();
         boolean isFound = false;
         int hiddenNumber = getHiddenNumber();
         int count = 0;
 
         System.out.println("Dear players you have 10 attempts only to find the number!");
         do {
-            System.out.println(player1Name + ", enter a number");
-            int playerGuess = scanner.nextInt();
-            player1.setAttempt(count, playerGuess);
+            int playerGuess = makeGuess(player1);
             isFound = compare(playerGuess, hiddenNumber);
-            if (!isFound && count == 9) {
-                System.out.println(player1Name + ", you have used all your attempts");
-            }
+            checkForWarning(isFound, player1);
+
             if (!isFound) {
-                System.out.println(player2Name + ", enter a number");
-                playerGuess = scanner.nextInt();
-                player2.setAttempt(count, playerGuess);
+                playerGuess = makeGuess(player2);
                 isFound = compare(playerGuess, hiddenNumber);
-                if(!isFound && count == 9) {
-                    System.out.println(player2Name + ", you have used all your attempts");
-                } else if (isFound) {
-                    System.out.println(player2Name + ", you have found the number with " + (count + 1) + " attempts!!!");
+                checkForWarning(isFound, player2);
+                if (isFound) {
+                    System.out.println(player2.getName() + ", you have found the number with " + (count + 1) + " attempts!!!");
                     break;
                 }
             } else {
-                System.out.println(player1Name + ", you have found the number with " + (count + 1) + " attempts!!!");
+                System.out.println(player1.getName() + ", you have found the number with " + (count + 1) + " attempts!!!");
                 break;
             }
             count++;
         } while (!isFound && count < 10);
 
-        printAttempts(player1, player1.getCount());
-        printAttempts(player2, player2.getCount());
+        printAttempts(player1);
+        printAttempts(player2);
 
         player1.clearAttempts();
         player2.clearAttempts();
+    }
+
+    private int makeGuess(Player player) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(player.getName() + ", enter a number");
+        int playerGuess = scanner.nextInt();
+        player.setAttempt(playerGuess);
+        return playerGuess;
+    }
+
+    private void checkForWarning(boolean isFound, Player player) {
+        if (!isFound && player.getCount() == 10) {
+            System.out.println(player.getName() + ", you have used all your attempts!");
+        }
     }
 
     private boolean compare(int playerGuess, int hiddenNumber) {
@@ -66,17 +70,15 @@ public class GuessNumber {
 
     private int getHiddenNumber() {
         Random random = new Random();
-        int number = random.nextInt(101);
-        if (number > 0) {
-            return number;
-        } else {
-            return 1;
-        }
+        return 1 + random.nextInt(100);
     }
 
-    private void printAttempts(Player player, int count) {
-        int[] attempts = player.getAttempts(count);
+    private void printAttempts(Player player) {
+        int[] attempts = player.getAttempts();
         System.out.print(player.getName() + ", your attempts were: ");
-        System.out.println(Arrays.toString(attempts));
+        for (int attempt : attempts) {
+            System.out.print(attempt + " ");
+        }
+        System.out.println("");
     }
 }
