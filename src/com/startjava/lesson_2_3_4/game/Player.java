@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Player {
     private String name;
-    private int[] attempts = new int[11];
+    private int[] attempts = new int[10];
     private int count;
 
     public Player(String name) {
@@ -33,7 +33,10 @@ public class Player {
     }
 
     public void clearAttempts() {
-        Arrays.fill(attempts, 0, count + 1, 0);
+        if (count < 10) {
+            Arrays.fill(attempts, 0, count + 1, 0);
+        } else {
+            Arrays.fill(attempts, 0);
+        }
     }
-
 }

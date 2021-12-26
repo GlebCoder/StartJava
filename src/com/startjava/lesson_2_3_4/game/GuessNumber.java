@@ -21,22 +21,21 @@ public class GuessNumber {
         do {
             int playerGuess = makeGuess(player1);
             isFound = compare(playerGuess, hiddenNumber);
-            checkForWarning(isFound, player1);
-
-            if (!isFound) {
-                playerGuess = makeGuess(player2);
-                isFound = compare(playerGuess, hiddenNumber);
-                checkForWarning(isFound, player2);
-                if (isFound) {
-                    System.out.println(player2.getName() + ", you have found the number with " + (count + 1) + " attempts!!!");
-                    break;
-                }
-            } else {
+            if (isFound) {
                 System.out.println(player1.getName() + ", you have found the number with " + (count + 1) + " attempts!!!");
                 break;
             }
+            compareCountAttempts(player1);
+
+            playerGuess = makeGuess(player2);
+            isFound = compare(playerGuess, hiddenNumber);
+            if (isFound) {
+                System.out.println(player2.getName() + ", you have found the number with " + (count + 1) + " attempts!!!");
+                break;
+            }
+            compareCountAttempts(player2);
             count++;
-        } while (!isFound && count < 10);
+        } while (count < 10);
 
         printAttempts(player1);
         printAttempts(player2);
@@ -45,18 +44,17 @@ public class GuessNumber {
         player2.clearAttempts();
     }
 
+    private int getHiddenNumber() {
+        Random random = new Random();
+        return 1 + random.nextInt(100);
+    }
+
     private int makeGuess(Player player) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(player.getName() + ", enter a number");
         int playerGuess = scanner.nextInt();
         player.setAttempt(playerGuess);
         return playerGuess;
-    }
-
-    private void checkForWarning(boolean isFound, Player player) {
-        if (!isFound && player.getCount() == 10) {
-            System.out.println(player.getName() + ", you have used all your attempts!");
-        }
     }
 
     private boolean compare(int playerGuess, int hiddenNumber) {
@@ -68,9 +66,10 @@ public class GuessNumber {
         return playerGuess == hiddenNumber;
     }
 
-    private int getHiddenNumber() {
-        Random random = new Random();
-        return 1 + random.nextInt(100);
+    private void compareCountAttempts(Player player) {
+        if (player.getCount() == 10) {
+            System.out.println(player.getName() + ", you have used all your attempts!");
+        }
     }
 
     private void printAttempts(Player player) {
