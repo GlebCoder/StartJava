@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class GuessNumber {
     private Player player1;
     private Player player2;
+    private int hiddenNumber;
 
     public GuessNumber(Player player1, Player player2) {
         this.player1 = player1;
@@ -14,22 +15,20 @@ public class GuessNumber {
 
     public void play() {
         boolean isFound = false;
-        int hiddenNumber = getHiddenNumber();
+        hiddenNumber = getHiddenNumber();
         int count = 0;
 
         System.out.println("Dear players you have 10 attempts only to find the number!");
         do {
             int playerGuess = makeGuess(player1);
-            isFound = compare(playerGuess, hiddenNumber);
-            if (isFound) {
+            if (compare(playerGuess)) {
                 System.out.println(player1.getName() + ", you have found the number with " + (count + 1) + " attempts!!!");
                 break;
             }
             compareCountAttempts(player1);
 
             playerGuess = makeGuess(player2);
-            isFound = compare(playerGuess, hiddenNumber);
-            if (isFound) {
+            if (compare(playerGuess)) {
                 System.out.println(player2.getName() + ", you have found the number with " + (count + 1) + " attempts!!!");
                 break;
             }
@@ -57,7 +56,7 @@ public class GuessNumber {
         return playerGuess;
     }
 
-    private boolean compare(int playerGuess, int hiddenNumber) {
+    private boolean compare(int playerGuess) {
         if (playerGuess < hiddenNumber) {
             System.out.println("Your number is too small");
         } else if (playerGuess > hiddenNumber) {

@@ -33,10 +33,6 @@ public class Player {
     }
 
     public void clearAttempts() {
-        if (count < 10) {
-            Arrays.fill(attempts, 0, count + 1, 0);
-        } else {
-            Arrays.fill(attempts, 0);
-        }
+        Arrays.fill(attempts, 0, count, 0);
     }
 }
